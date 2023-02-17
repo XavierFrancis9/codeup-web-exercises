@@ -20,10 +20,10 @@ let googleHours = Number(prompt("How many hours did you work at Google?"));
 let amazonHours = Number(prompt("How many hours did you work at Amazon?"));
 let facebookHours = Number(prompt("How many hours did you work at Facebook?"));
 alert("Your total check should be $" + ((googlePay * googleHours) + (amazonPay * amazonHours) + (facebookPay * facebookHours)));
-//
+
 let classStatus = confirm("Select 'OK' if the class is open");
 let scheduleStatus = confirm("Select 'OK' if the your schedule is open");
-let canEnroll = classStatus.toString(); + scheduleStatus.toString();
+let canEnroll = classStatus && scheduleStatus;
 alert("You are able to enroll into a new class: " + canEnroll);
 
 let items = confirm("Select 'OK' if 2 or more items are being purchased");
