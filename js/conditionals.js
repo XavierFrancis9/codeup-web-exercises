@@ -174,8 +174,6 @@ alert("Your new total with your Lucky Number discount applied is: $" + calculate
 let confirmStart = confirm ("Select 'OK' if you would like to enter a number.");
 let userNumber = Number(prompt("Please enter a number"));
 
-
-
 function evenOrOdd(x) {
     if (x % 2 === 0 && x !== 0) {
         return "That is an odd number";
@@ -187,7 +185,7 @@ function evenOrOdd(x) {
 }
 
 function addHundred(x) {
-    return userNumber " +" 100 = " + (userNumber + 100);
+    return userNumber + " + 100 = " + (userNumber + 100);
 }
 
 function positiveOrNegative(x) {
