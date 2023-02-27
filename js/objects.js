@@ -161,4 +161,29 @@
      *   `showBookInfo` function.
      */
 
+    function createBook (title, authorFirstName, authorLastName) {
+        return {
+            title: title,
+            authorFirstName: authorFirstName,
+            authorLastName: authorLastName
+        };
+    }
+
+    let newBooks = [
+        createBook("Cool Book", "John", "Smith"),
+        createBook("Awesome Book", "Dude", "Guy"),
+        createBook("Best Book", "Joe", "Smoe")
+    ];
+    function showBookInfo(book) {
+        console.log("Book #" + (parseInt(newBooks.indexOf(book)) + 1) + "\n" + "Title: " + book.title + "\n" + "Author: " + (book.authorFirstName + " " + book.authorLastName));
+    }
+
+    newBooks.forEach((element) => {
+        console.log(showBookInfo(element));
+    })
+
+
+
+
+
 })();
