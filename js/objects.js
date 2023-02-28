@@ -81,7 +81,7 @@
     console.log(shoppers);
 
     shoppers.forEach((element) => {
-        alert("Hello, " + element.name + " Your current total is: " + element.amount + " Your discount is: " + element.discount + " Your new total is: " + element.total)
+        alert("Hello, " + element.name + "!" + "\n" + "Your current total is: " + element.amount + "\n" + "Your discount is: " + element.discount + "\n" + "Your new total is: " + element.total)
     })
 
 
@@ -175,7 +175,7 @@
         createBook("Best Book", "Joe", "Smoe")
     ];
     function showBookInfo(book) {
-        console.log("Book #" + (parseInt(newBooks.indexOf(book)) + 1) + "\n" + "Title: " + book.title + "\n" + "Author: " + (book.authorFirstName + " " + book.authorLastName));
+        return "Book #" + (parseInt(newBooks.indexOf(book)) + 1) + "\n" + "Title: " + book.title + "\n" + "Author: " + (book.authorFirstName + " " + book.authorLastName);
     }
 
     newBooks.forEach((element) => {
