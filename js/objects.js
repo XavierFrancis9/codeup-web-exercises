@@ -51,7 +51,6 @@
      */
 
     // create function for discounts
-    // display to browser how much each shopper needs to pay
     // display name, amount before discount, discount, amount after discount
 
     let shoppers = [
@@ -119,6 +118,20 @@
             title: 'Book3',
             author: {
                 firstName: 'john',
+                lastName:'johnson'
+            }
+        },
+        {
+            title: 'Book4',
+            author: {
+                firstName: 'dude',
+                lastName:'johnson'
+            }
+        },
+        {
+            title: 'Book5',
+            author: {
+                firstName: 'guy',
                 lastName:'johnson'
             }
         }
