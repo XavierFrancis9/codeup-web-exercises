@@ -11,7 +11,7 @@
 <form method="POST" action="https://request-inspector.glitch.me/">
 
     <label for="email">Email:</label>
-    <input type="text" id="email" name="email" placeholder="Enter your email">
+    <input type="email" id="email" name="email" placeholder="Enter your email">
 
     <label for="password">Password: </label>
     <input type="password" id="password" name="password" placeholder="Enter your password">
@@ -19,7 +19,7 @@
 
     <p>Tell Us About Yourself</p>
     <label for="bio"></label>
-    <textarea id="bio" name="bio" placeholder="About you ...."></textarea>
+    <textarea id="bio" name="bio" placeholder="About you ...." cols="50" rows="25"></textarea>
     <br><br>
 
     <p>How did you hear about us?</p>
@@ -29,6 +29,7 @@
     <input type="radio" id="radio advertisement" name="how heard about" value="radio advertisement">Radio Advertisement<br>
     <label for="internet adverstisement"></label>
     <input type="radio"  id="internet adverstisement" name="how heard about" value="internet Advertisement">Internet Advertisement<br>
+    <label for="other"></label>
     <input type="radio" id="other" name="how heard about" value="other">Other
     <br><br>
 
