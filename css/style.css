@@ -1,4 +1,52 @@
+body {
+    background-color: gray;
+    background-image: url("https://images.pexels.com/photos/2092075/pexels-photo-2092075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+    background-size: cover;
+    color: white;
+    font-family: fantasy, Helvetica, "Times New Roman";
+}
+
+header {
+}
+
+header p {
+    text-align: center;
+}
+
 .fancy-header {
-    color: purple;
+    color: gray;
     text-decoration: underline;
+    text-align: center;
+}
+
+h1, h2 {
+    color: gray;
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: circle;
+}
+
+table, td, tr {
+    font-family: "Andale Mono";
+    font-size: 14px;
+    padding: 10px;
+}
+
+th {
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+a:link {
+    color: blue;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+a:visited {
+    color: purple;
 }
