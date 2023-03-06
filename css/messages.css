@@ -1,0 +1,38 @@
+body, html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 1em auto;
+    font-family: Arial, Ubuntu, sans-serif;
+}
+.message-message-info,
+.message-message-error,
+.message-message-success,
+.message-message-warning {
+    margin: .5em 1em;
+    border: solid 1px black;
+    padding: 5px;
+    border-radius: 5px;
+    max-width: 100%;
+
+}
+
+.message-message-info {
+    background-color: lightblue;
+    color: blue
+}
+
+.message-message-error {
+    background-color: lightpink;
+    color: red;
+}
+
+.message-message-success {
+    background-color:lightgreen;
+    color: green;
+}
+
+.message-message-warning {
+    background-color: lightyellow;
+    color: goldenrod;
+}
