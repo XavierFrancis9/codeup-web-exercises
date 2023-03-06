@@ -1,6 +1,6 @@
 body {
     background-color: gray;
-    background-image: url("https://images.pexels.com/photos/2092075/pexels-photo-2092075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+    background-image: url("https://images.pexels.com/photos/3705645/pexels-photo-3705645.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
     background-size: cover;
     color: white;
     font-family: fantasy, Helvetica, "Times New Roman";
@@ -14,7 +14,7 @@ header p {
 }
 
 .fancy-header {
-    color: gray;
+    color: yellow;
     text-decoration: underline;
     text-align: center;
 }
