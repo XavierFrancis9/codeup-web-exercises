@@ -45,6 +45,7 @@ a:link {
 
 a:hover {
     cursor: pointer;
+    color: green;
 }
 
 a:visited {
