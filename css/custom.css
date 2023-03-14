@@ -1,0 +1,71 @@
+nav {
+    display: flex;
+    text-underline: none;
+    justify-content: flex-start;
+    margin: 10px;
+}
+
+.topNav {
+    list-style: none;
+    display: flex;
+    margin: auto 0;
+    padding: 0;
+}
+
+.topNav li {
+    margin: 10px;
+}
+
+li a {
+    text-decoration: none;
+    color: black;
+}
+
+.menuLink {
+    color: grey;
+}
+
+.searchStores {
+    margin: auto 10px;
+}
+
+.searchStores button {
+    background-color: white;
+    color: #3B94D9;
+    border: solid 1px #3B94D9;
+}
+
+div.signUp, div i {
+    display: flex;
+    margin: auto 0 auto auto;
+    padding: 0 5px;
+}
+
+.signUp a {
+    color: gray;
+    text-decoration: none;
+}
+
+main {
+    margin: 0 100px;
+}
+
+.jumbotron {
+    height: 346px;
+    background-size: cover;
+    background-image: url("../img/pizza.png");
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.banner {
+    background-color: rgba(255,255,255,0.5);
+    height: 50px;
+    font-size: 2em;
+    text-align: center;
+}
+
+.handTossed, .crispyThin {
+    margin: 15px;
+}
