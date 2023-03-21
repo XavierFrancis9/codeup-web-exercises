@@ -35,17 +35,24 @@
     $('li:first').attr('id',"item1")
     $('li:nth-of-type(2)').attr('id',"item2")
     $('li:nth-of-type(3)').attr('id',"item3")
-    $('li').attr('class', 'list-items')
+    $('li').attr('class', 'codeup')
     $('div').attr('id','main-div')
 
+    $("li:nth-of-type(3)").removeClass('codeup')
+
+    $('.codeup').css('border','solid 1px red')
+
+    $('li').css('font-size','20px');
+
+    $('h1, p, li').css('background-color', 'yellow')
+
+    $(function () {
+        alert($('h1').text())
+    })
+
+
+
 </script>
-
-<!--<script>-->
-<!--    $(function() {-->
-<!--        alert( 'The DOM has finished loading!' );-->
-<!--    });-->
-<!--</script>-->
-
 
 </body>
 </html>
