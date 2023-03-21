@@ -8,14 +8,44 @@
     <title>JQuery Exercises</title>
 </head>
 <body>
-<h1>hello world</h1>
+
+<h1>Hello World</h1>
+
+<p>This is a paragraph</p>
+
+<ul>
+    <li>item 1</li>
+    <li>item 2</li>
+    <li>item 3</li>
+</ul>
+
+<div>This is a div</div>
+
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
 <script>
-    $(function() {
-        alert( 'The DOM has finished loading!' );
-    });
+
+    $('h1').attr('id', 'main-heading')
+    $('h1').attr('class', 'heading')
+    $('p').attr('id', 'main-paragraph')
+    $('p').attr('class', 'paragraph')
+    $('ul').attr('id', 'unorderedList')
+    $('ul').attr('class', 'list')
+    $('li:first').attr('id',"item1")
+    $('li:nth-of-type(2)').attr('id',"item2")
+    $('li:nth-of-type(3)').attr('id',"item3")
+    $('li').attr('class', 'list-items')
+    $('div').attr('id','main-div')
+
 </script>
+
+<!--<script>-->
+<!--    $(function() {-->
+<!--        alert( 'The DOM has finished loading!' );-->
+<!--    });-->
+<!--</script>-->
+
 
 </body>
 </html>
