@@ -24,32 +24,53 @@
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
+<!--<script>-->
+
+<!--    $('h1').attr('id', 'main-heading')-->
+<!--    $('h1').attr('class', 'heading')-->
+<!--    $('p').attr('id', 'main-paragraph')-->
+<!--    $('p').attr('class', 'paragraph')-->
+<!--    $('ul').attr('id', 'unorderedList')-->
+<!--    $('ul').attr('class', 'list')-->
+<!--    $('li:first').attr('id',"item1")-->
+<!--    $('li:nth-of-type(2)').attr('id',"item2")-->
+<!--    $('li:nth-of-type(3)').attr('id',"item3")-->
+<!--    $('li').attr('class', 'codeup')-->
+<!--    $('div').attr('id','main-div')-->
+
+<!--    $("li:nth-of-type(3)").removeClass('codeup')-->
+
+<!--    $('.codeup').css('border','solid 1px red')-->
+
+<!--    $('li').css('font-size','20px');-->
+
+<!--    $('h1, p, li').css('background-color', 'yellow')-->
+
+<!--    $(function () {-->
+<!--        alert($('h1').text())-->
+<!--    })-->
+
+
+
+<!--</script>-->
+<!--mouse events exercise-->
 <script>
+    $('h1').click(() => {
+        $('h1').css('background-color', 'yellow');
+    });
 
-    $('h1').attr('id', 'main-heading')
-    $('h1').attr('class', 'heading')
-    $('p').attr('id', 'main-paragraph')
-    $('p').attr('class', 'paragraph')
-    $('ul').attr('id', 'unorderedList')
-    $('ul').attr('class', 'list')
-    $('li:first').attr('id',"item1")
-    $('li:nth-of-type(2)').attr('id',"item2")
-    $('li:nth-of-type(3)').attr('id',"item3")
-    $('li').attr('class', 'codeup')
-    $('div').attr('id','main-div')
+    $('p').dblclick(() => {
+        $('p').css('font-size', '18px');
+    });
 
-    $("li:nth-of-type(3)").removeClass('codeup')
-
-    $('.codeup').css('border','solid 1px red')
-
-    $('li').css('font-size','20px');
-
-    $('h1, p, li').css('background-color', 'yellow')
-
-    $(function () {
-        alert($('h1').text())
-    })
-
+    $('li').hover(
+        function() {
+            $(this).css('color', 'red')
+        },
+        function() {
+            $(this).css('color', 'black')
+        }
+    );
 
 
 </script>
