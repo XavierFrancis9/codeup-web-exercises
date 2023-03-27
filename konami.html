@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konami Code</title>
+    <script src="https://kit.fontawesome.com/d33e65fc6a.js" crossorigin="anonymous"></script>
+    <style>
+        .arrow {
+            background-color: #757575;
+            width: 40px;
+            height: 40px;
+            margin: auto;
+            cursor: pointer;
+        }
+
+        .button {
+            width: 40px;
+            height: 40px;
+            margin: auto;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .internal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+</head>
+<body style="text-align: center">
+<h1>Konami Code</h1>
+
+<p>Enter THE code ... you know what code.</p>
+<div id="controller" style="background-color: #b7b7b7; text-align: center; width: 80%; margin: auto; padding: 15px; border-radius: 10px;">
+    <div id="logo" style="background-color: #757575; width: 25%; margin:auto; border-radius: 10px; margin-bottom: 45px;">Nintendo</div>
+
+    <div style="display: flex; justify-content: space-around">
+
+        <div id="arrows" style="width: 40%">
+            <p id="topArrow" class="arrow internal"><i class="fa-solid fa-play fa-rotate-270" style="color: #949494;"></i></p><br>
+            <div class="" style="display: flex;">
+                <p id="leftArrow" class="arrow internal"><i class="fa-solid fa-play fa-rotate-180" style="color: #949494;"></i></p>
+                <p id="rightArrow" class="arrow internal"><i class="fa-solid fa-play fa-flip-vertical" style="color: #949494;"></i></p>
+            </div><br>
+            <p id="bottomArrow" class="arrow internal"><i class="fa-solid fa-play fa-rotate-90" style="color: #949494;"></i></p>
+        </div>
+
+        <div id="buttons" style="width: 40%">
+            <p id="yButton" class="button internal" style="background-color: yellow">Y</p><br>
+            <div class="" style="display: flex;">
+                <p id="aButton" class="button internal" style="background-color: red">A</p>
+                <p id="xButton" class="button internal" style="background-color: #46ff32">X</p>
+            </div><br>
+            <p id="bButton" class="button internal" style="background-color: blue">B</p>
+        </div>
+
+    </div>
+    <div id="startSelect" style="display: flex; justify-content: center">
+        <p style="width: 15%; background-color: #757575; border-radius: 10px; margin-right: 5px;">START</p>
+        <p style="width: 15%;  background-color: #757575; border-radius: 10px; margin-left: 5px">SELECT</p>
+    </div>
+</div><br>
+
+<div id="resultImage" style="margin: auto"></div>
+<!--<form>-->
+<!--    <input type="text" id="textfield" name="textfield" placeholder="Type Here"/>-->
+<!--</form>-->
+
+
+<script src="js/jquery-3.6.4.js"></script>
+<script>
+    "use strict";
+
+    let konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+    let konamiIndex = 0;
+
+    $(document).keyup(function(event){
+        let userInput = event.keyCode;
+        console.log(userInput);
+        if (userInput === konamiCode[konamiIndex]) {
+            konamiIndex++;
+        } else {
+            $('body').css('background-color', 'red');
+            $('#resultImage').html("<img src='img/shame.gif'>")
+            konamiIndex = 0;
+        }
+        if (konamiIndex === konamiCode.length) {
+            $('body').css('background-color', 'green');
+            $('#resultImage').html("<img src='img/Konami_Code.jpg'>")
+        }
+    });
+
+    function checkControllerCode() {
+        if (controllerInput[controllerInputCount] === konamiCode[controllerInputCount]) {
+            controllerInputCount++;
+        } else {
+            $('body').css('background-color', 'red');
+            $('#resultImage').html("<img src='img/shame.gif'>")
+            controllerInput = 0;
+        }
+        if (controllerInput.length === konamiCode.length) {
+            $('body').css('background-color', 'green');
+            $('#resultImage').html("<img src='img/Konami_Code.jpg'>")
+        }
+    }
+
+    let controllerInput = [];
+    let controllerInputCount = 0;
+
+    $('#topArrow').click(function(event) {
+        controllerInput.push(38);
+        console.log(controllerInput);
+        checkControllerCode();
+    });
+    $('#bottomArrow').click(function(event) {
+        controllerInput.push(40);
+        console.log(controllerInput);
+        checkControllerCode();
+    });
+    $('#leftArrow').click(function(event) {
+        controllerInput.push(37);
+        console.log(controllerInput);
+        checkControllerCode();
+    });
+    $('#rightArrow').click(function(event) {
+        controllerInput.push(39);
+        console.log(controllerInput);
+        checkControllerCode();
+    });
+    $('#bButton').click(function(event) {
+        controllerInput.push(66);
+        console.log(controllerInput);
+        checkControllerCode();
+    });
+    $('#aButton').click(function(event) {
+        controllerInput.push(65);
+        console.log(controllerInput);
+        checkControllerCode();
+    });
+
+
+
+</script>
+</body>
+</html>
