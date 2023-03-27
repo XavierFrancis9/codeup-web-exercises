@@ -82,12 +82,14 @@
             konamiIndex++;
         } else {
             $('body').css('background-color', 'red');
-            $('#resultImage').html("<img src='img/shame.gif'>")
+            $('#resultImage').html("<img src='img/super-mario-bros-dead.gif'>")
             konamiIndex = 0;
+            marioDeath.play();
         }
         if (konamiIndex === konamiCode.length) {
             $('body').css('background-color', 'green');
-            $('#resultImage').html("<img src='img/Konami_Code.jpg'>")
+            $('#resultImage').html("<img src='img/pepe-mario.gif'>")
+            flagPole.play();
         }
     });
 
@@ -97,17 +99,29 @@
         } else {
             $('body').css('background-color', 'red');
             $('#resultImage').html("<img src='img/shame.gif'>")
+            marioDeath.play();
             controllerInput = 0;
         }
         if (controllerInput.length === konamiCode.length) {
             $('body').css('background-color', 'green');
-            $('#resultImage').html("<img src='img/Konami_Code.jpg'>")
+            $('#resultImage').html("<img src='img/pepe-mario.gif'>")
+            flagPole.play();
         }
     }
-
+    let marioDeath = new Audio("audio/super-mario-death-sound-sound-effect.mp3")
+    let flagPole = new Audio("audio/flagpole.mp3")
     let controllerInput = [];
     let controllerInputCount = 0;
-
+    $('#xButton').click(function(event) {
+        controllerInput.push(0);
+        console.log(controllerInput);
+        checkControllerCode();
+    });
+    $('#yButton').click(function(event) {
+        controllerInput.push(0);
+        console.log(controllerInput);
+        checkControllerCode();
+    });
     $('#topArrow').click(function(event) {
         controllerInput.push(38);
         console.log(controllerInput);
