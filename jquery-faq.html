@@ -6,6 +6,19 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>jquery faq</title>
+    <style>
+        .invisible {
+            visibility: hidden;
+        }
+
+        .larger {
+            font-size: larger;
+        }
+
+        .highlight {
+            color: green;
+        }
+    </style>
 </head>
 <body>
     <h1>National Park FAQs</h1>
@@ -67,6 +80,33 @@
 
     <script src="js/jquery-3.6.4.js"></script>
     <script>
+        $('h1').css('text-align', 'center')
+        $('#button').css('text-align', 'center')
+        $('dd').toggleClass('invisible')
+        $('dt').toggleClass('.larger')
+        $('dt').toggleClass('.highlight')
+        $('dd').toggle()
+
+        $('dt:nth-of-type(1)').click(function (event) {
+            $('dd:nth-of-type(1)').toggle()
+            $('dd:nth-of-type(1)').toggleClass('invisible')
+            $('dt:nth-of-type(1)').toggleClass('larger')
+            $('dt:nth-of-type(1)').toggleClass('highlight')
+        })
+
+
+        // for(i = 1; i < $('dt').length; i++) {
+        //     $('dt:nth-of-type(index)').click(function (event) {
+        //         $('dd:nth-of-type(index)').toggle()
+        //         $('dd:nth-of-type(index)').toggleClass('invisible')
+        //         $('dt:nth-of-type(index)').toggleClass('larger')
+        //         $('dt:nth-of-type(index)').toggleClass('highlight')
+        //     })
+        // });
+
+
+
+
     </script>
 </body>
 </html>
