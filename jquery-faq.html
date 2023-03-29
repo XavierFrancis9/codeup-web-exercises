@@ -7,6 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>jquery faq</title>
     <style>
+        body {
+            padding: 0 20px;
+            background-color: grey;
+            background-image: url("img/nps_social_image_02.jpg");
+            background-size: cover;
+            background-position: center;
+
+        }
         .invisible {
             visibility: hidden;
         }
@@ -16,7 +24,42 @@
         }
 
         .highlight {
-            color: green;
+            color: white;
+            text-shadow: 2px 4px 4px black;
+        }
+
+        .addBlue {
+            color: blue;
+        }
+
+        .photo {
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        img {
+            width: 400px;
+            height: 400px;
+            border: saddlebrown 5px solid;
+        }
+
+        #images {
+            margin: 25px 100px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #button1, #button2, #button3 {
+
+        }
+
+        h1 {
+            background-color: #005758;
+        }
+
+        dl, #parks {
+            background-color: rgba(156,156,156,0.51);
         }
     </style>
 </head>
@@ -78,17 +121,60 @@
         </dd>
     </dl>
 
+    <hr>
+    <h1>National Parks</h1>
+    <hr>
+<div id="parks">
+    <h3 class="parkName">Glacier National Park</h3>
+    <ul class="parkFacts">
+        <li>Glacier National Park is a part of the world’s first international peace park</li>
+        <li>Glacier straddles the Continental Divide, allowing for extreme weather</li>
+        <li>Going-to-the-Sun Road is a spectacular marvel and a must see on your trip to Glacier</li>
+        <li>Evidence of human use in the area dates back over 12,000 years</li>
+    </ul>
+
+    <h3 class="parkName">Zion National Park</h3>
+    <ul class="parkFacts">
+        <li>Before it was a national park, Zion was a national monument, and it’s name wasn’t Zion</li>
+        <li>Zion is home to one of the greatest engineering feats of modern times</li>
+        <li>Zion is more than just slot canyons and amazing hikes -- it also protects archeological sites</li>
+        <li>Zion’s Angels Landing provides spectacular views, but it’s one of the world’s most dangerous</li>
+    </ul>
+
+    <h3 class="parkName">Petrified Forest National Park</h3>
+    <ul class="parkFacts">
+        <li>The Park Protects One of the World’s Largest Petrified Forests</li>
+        <li>Petrified Forest Was Created to Prevent Theft </li>
+        <li>Newspaper Rock Contains More Than 650 Petroglyphs</li>
+        <li>The Park’s Badlands Date to the Dawn of Dinosaurs</li>
+    </ul>
+</div>
+    <hr>
+    <div id="images">
+        <div class="photo">
+            <img src="img/grand-tetons.jpeg">
+            <button id="button1">Swap</button>
+        </div>
+        <div class="photo">
+            <img src="img/ocean-tower.jpeg">
+            <button id="button2">Swap</button>
+        </div>
+        <div class="photo">
+            <img src="img/breakfast.jpeg">
+            <button id="button3">Swap</button>
+        </div>
+    </div>
+
     <script src="js/jquery-3.6.4.js"></script>
     <script>
         $('h1').css('text-align', 'center');
         $('#button').css('text-align', 'center');
         $('dd').toggleClass('invisible');
-        $('dt').toggleClass('.larger');
-        $('dt').toggleClass('.highlight');
         $('dd').toggle();
+        $('.parkFacts').toggle();
 
 
-        for(i = 0; i < $('dt').length; i++) {
+        for(let i = 0; i < $('dt').length; i++) {
             let num = i + 1;
             $('dt:nth-of-type('+num+')').click(function (event) {
                 $('dd:nth-of-type('+num+')').toggle();
@@ -98,6 +184,21 @@
             });
         };
 
+
+        for(let i = 0; i < $('.parkName').length; i++) {
+            let num = i + 1;
+            $('.parkName:nth-of-type('+num+')').click(function(event) {
+                $('.parkName:nth-of-type('+num+')').toggleClass('larger');
+                $('.parkName:nth-of-type('+num+')').toggleClass('highlight')
+                $('.parkFacts:nth-of-type('+num+')').toggle();
+                $('.parkName:nth-of-type('+num+')').next('ul').children('li').css('font-weight','bold');
+                $('.parkName:nth-of-type('+num+')').next('ul').children('li').last().css('color','red');
+            });
+        };
+
+        $('li').click(function() {
+            $(this).parent().children().first('li').toggleClass('addBlue')
+        })
 
     </script>
 </body>
