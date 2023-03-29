@@ -49,6 +49,7 @@
     //     $('#insertProducts').append("<td>" + JSON.stringify(data[0].title) + "</td>")
     // })
 
+
     $.ajax('data/inventory.json').done(function(data) {
         for(let i = 0; i < data.length; i++) {
             $('#insertProducts').append("<tr>")
@@ -59,6 +60,17 @@
             $('#insertProducts').append("</tr>")
         }
     })
+
+    $('#insertProducts').append("<tr>")
+    $('#insertProducts').append("<td>" + "Handsaw" + "</td>")
+    $('#insertProducts').append("<td>" + "100" + "</td>")
+    $('#insertProducts').append("<td>" + "5" + "</td>")
+    $('#insertProducts').append("<td>" + "tool" + "</td>")
+    $('#insertProducts').append("</tr>")
+
+
+
+
 
 
 })();
