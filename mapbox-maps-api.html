@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Geocode Examples</title>
+    <!-- Mapbox CSS -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <!-- Custom CSS -->
+    <style>
+        #map {
+            /* the width and height may be set to any size */
+            width: 100%;
+            height: 700px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Best Restaurants of Morganton</h1>
+<label for="selectZoom">Zoom Level: </label>
+<select id="selectZoom">
+    <option value="0">Default</option>
+    <option value="5">5</option>
+    <option value="15">15</option>
+    <option value="20">20</option>
+</select>
+<!-- The HTML element that serves as the Mapbox container -->
+<div id='map'></div>
+
+<script src="js/keys.js"></script>
+<!-- Mapbox JS -->
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+
+<!-- Mapbox Geocoder Util Methods -->
+<script src="js/mapbox-geocoder.js"></script>
+
+<!-- Custom JS -->
+<script>
+
+    let favRestuarants = [
+        {name: "Root & Vine", location: "139 w union street morganton, nc 28655", description: "Incredible food with incredible atmosphere!"},
+        {name: "Boulevard BBQ", location: "810 S College St, Morganton, NC 28655", description: "Best BBQ in town!"},
+        {name: "Treat", location: "100 W Union St, Morganton, NC 28655", description: "Great staff but better food!"}
+    ]
+
+    mapboxgl.accessToken = MAPBOX_TOKEN;
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        zoom: 10,
+        center: [-98.4916, 29.4252]
+    });
+
+
+    // the  geocode method from mapbox-geocoder-utils.js
+    geocode("Morganton", MAPBOX_TOKEN).then(function(result) {
+        console.log(result);
+        map.setCenter(result);
+        map.setZoom(14);
+    });
+
+    favRestuarants.forEach(function(element) {
+        geocode(element.location, MAPBOX_TOKEN).then(function(result) {
+            console.log(result);
+            let favResMarker = new mapboxgl.Marker()
+                .setLngLat([result[0], result[1]])
+                .addTo(map);
+            let favResPopup = new mapboxgl.Popup().setLngLat([result[0], result[1]])
+                .setHTML(element.name + "<br>" + element.description)
+            favResMarker.setPopup(favResPopup);
+        });
+    })
+
+</script>
+<script src="js/jquery-3.6.4.js"></script>
+<script>
+    $('#selectZoom').change(function() {
+        if ($(this).val() === '20') {
+            map.setZoom(20);
+        } else if ($(this).val() === '15') {
+            map.setZoom(15);
+        } else if ($(this).val() === '5') {
+            map.setZoom(5);
+        } else {
+            map.setZoom(14)
+        }
+            });
+</script>
+</body>
+</html>
