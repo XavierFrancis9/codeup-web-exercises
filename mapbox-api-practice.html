@@ -17,11 +17,13 @@
 <body>
 
 <h1>My First Mapbox Map!</h1>
-
+<label for="search">Search for a location</label>
+<input id="search">
 <!-- The HTML element that serves as the Mapbox container -->
 <div id='map'></div>
 
 <script src="js/keys.js"></script>
+<script src="js/mapbox-geocoder.js"></script>
 <!-- Custom JS -->
 <script>
     //adding mapbox w/ style
@@ -38,9 +40,13 @@
         .addTo(map);
     //setting popup object
     let popup = new mapboxgl.Popup().setLngLat([-81.95, 35.375])
-        .setHTML("<p>ROCO</p>")
+        .setHTML('<p>ROCO</p>')
     //display popup when clicking marker
     marker.setPopup(popup);
+
+    //mapbox geocoder
+    let homeLocation = geocode('spindale', MAPBOX_TOKEN);
+    console.log(homeLocation);
 
 </script>
 </body>
