@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather App</title>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+
+    <style>
+        h1 {
+            text-align: center;
+        }
+        #map {
+            /* the width and height may be set to any size */
+            width: 100%;
+            height: 700px;
+        }
+
+        #weather {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .weatherCards {
+            border: black 2px solid;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Weather App</h1>
+    <div id="weather"></div>
+    <div id="map"></div>
+
+    <script src="js/jquery-3.6.4.js"></script>
+    <script src="js/keys.js"></script>
+    <script src="js/mapbox-geocoder.js"></script>
+
+    <script>
+// mapbox added to html
+        mapboxgl.accessToken = MAPBOX_TOKEN;
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 10,
+            center: [-98.4916, 29.4252]
+        });
+// openweather added using imperial measurements for 5 day forecast
+        let daysArr = [];
+        $.get("http://api.openweathermap.org/data/2.5/forecast", {
+            APPID: OPEN_WEATHER_APPID,
+            q:     "San Antonio, US",
+            units: "imperial"
+        }).done(function(data) {
+            console.log(data);
+            console.log(data.list);
+            for (let i = 0; i < 40; i+=8) {
+                console.log(data.list[i]);
+                // adding card for each forecast day
+                $('#weather').append("<div class='weatherCards'><p>" + data.list[i].dt_txt + "</p>" + "<p>" + data.list[i].main.temp_min + " / " + data.list[i].main.temp_max + "</p><hr>" + "<p>" + data.list[i].weather[0].description + "</p>" + "<p>Humidity: " + data.list[i].main.humidity + "%" + "")
+            }
+        });
+
+
+
+
+    </script>
+</body>
+</html>
+
+<!--show current condition of city living in-->
+<!--update to show 5 day forecast-->
+<!--allow user to drop pin on map and show 5 day forecast for that location-->
+<!--allow user to search and display forecast for searched location-->
+<!--pdate marker position on each search-->

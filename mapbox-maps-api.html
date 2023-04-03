@@ -11,22 +11,42 @@
             /* the width and height may be set to any size */
             width: 100%;
             height: 700px;
+            padding: 15px 0;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
 <h1>Best Restaurants of Morganton</h1>
-<label for="selectZoom">Zoom Level: </label>
-<select id="selectZoom">
-    <option value="0">Default</option>
-    <option value="5">5</option>
-    <option value="15">15</option>
-    <option value="20">20</option>
-</select>
-<!-- The HTML element that serves as the Mapbox container -->
-<div id='map'></div>
+<div style="display: flex; justify-content: space-between">
 
+    <div>
+        <label for="searchInput">Search:</label>
+        <input id="searchInput" type="text" placeholder="Ex: Dallas">
+        <button id="submitSearch">Submit</button>
+    </div>
+
+    <div>
+        <label for="selectZoom">Zoom Level: </label>
+        <select id="selectZoom">
+            <option value="0">Default</option>
+            <option value="5">5</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+        </select>
+    </div>
+
+</div>
+<!-- The HTML element that serves as the Mapbox container -->
+<div id='map' style=""></div>
+<button id="hideMarkers">Hide Markers</button>
+
+<script src="js/jquery-3.6.4.js"></script>
 <script src="js/keys.js"></script>
 <!-- Mapbox JS -->
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
@@ -43,6 +63,7 @@
         {name: "Treat", location: "100 W Union St, Morganton, NC 28655", description: "Great staff but better food!"}
     ]
 
+    //input mapbox to html
     mapboxgl.accessToken = MAPBOX_TOKEN;
     var map = new mapboxgl.Map({
         container: 'map',
@@ -59,21 +80,21 @@
         map.setZoom(14);
     });
 
+    //add marker and popup for each restaurant
     favRestuarants.forEach(function(element) {
         geocode(element.location, MAPBOX_TOKEN).then(function(result) {
             console.log(result);
             let favResMarker = new mapboxgl.Marker()
                 .setLngLat([result[0], result[1]])
                 .addTo(map);
-            let favResPopup = new mapboxgl.Popup().setLngLat([result[0], result[1]])
+            let favResPopup = new mapboxgl.Popup()
+                // .setLngLat([result[0], result[1]])
                 .setHTML(element.name + "<br>" + element.description)
             favResMarker.setPopup(favResPopup);
         });
     })
 
-</script>
-<script src="js/jquery-3.6.4.js"></script>
-<script>
+    //zoom select function
     $('#selectZoom').change(function() {
         if ($(this).val() === '20') {
             map.setZoom(20);
@@ -84,7 +105,27 @@
         } else {
             map.setZoom(14)
         }
-            });
+    });
+
+
+    $('#submitSearch').click(function(event) {
+        console.log($('#searchInput').val())
+        geocode($('#searchInput').val(), MAPBOX_TOKEN).then(function(result) {
+            console.log(result);
+            map.setCenter(result)
+            let userMarker = new mapboxgl.Marker()
+                .setLngLat([result[0], result[1]])
+                .addTo(map);
+        });
+    })
+
+    $('#hideMarkers').click(function(event) {
+        console.log(markers);
+        $('.mapboxgl-marker').toggle();
+        // $('div').toggleClass('mapboxgl-marker');
+    })
+
 </script>
+
 </body>
 </html>
