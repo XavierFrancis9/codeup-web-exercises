@@ -1,6 +1,6 @@
 "use strict"
 
-//console.log("testing");
+//console.log("testing.html");
 // ------------ if/else && else/if statements --------
 let age = 26;
 
