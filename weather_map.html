@@ -63,6 +63,18 @@
             padding: 0 25px;
         }
 
+        #city {
+            text-align: center;
+            padding-top: 15px;
+        }
+
+        #search {
+            width: 50%;
+            justify-content: center;
+            margin: auto;
+            padding-top: 25px;
+        }
+
         @media screen and (min-width: 1440px) {
             .weatherCards {
                 margin: auto;
@@ -77,14 +89,16 @@
     <div class="container-fluid">
         <a class="navbar-brand">
             <img src="img/png-transparent-weather-and-climate-weather-and-climate-weather-radar-weather-station-weather-leaf-logo-weather-forecasting-thumbnail.png" width="30" height="24" class="d-inline-block align-text-top"> Weather App</a>
-        <form class="d-flex" role="search">
-            <input id="searchInput" class="form-control me-2" type="search" placeholder="Ex: Dallas" aria-label="Search">
-            <button id="submitSearch" class="btn btn-outline-success" type="submit">Search</button>
-        </form>
     </div>
 </nav>
+    <div id="search" class="d-flex">
+        <input id="searchInput" class="form-control me-2" type="search" placeholder="Ex: Dallas" aria-label="Search">
+        <button id="submitSearch" class="btn btn-outline-success" type="submit">Find</button>
+    </div>
 
-    <div id="city"></div>
+
+    <h3 id="city"></h3>
+
     <div id="weather"></div>
     <div id="map"></div>
 
@@ -101,6 +115,14 @@
             zoom: 5,
             center: [-98.4916, 29.4252]
         });
+
+        let currentCity = function(lng, lat) {
+            reverseGeocode({lng: lng, lat: lat}, MAPBOX_TOKEN).then(function(results) {
+                console.log(results);
+                $('#city').html(results)
+            });
+        };
+
 
         let htmlInput = function(data) {
             console.log(data);
@@ -136,9 +158,8 @@
             map.setCenter(coordinates);
             map.setZoom(5);
             newCord.push(coordinates);
-            // console.log(newCord[0].lng);
-            // console.log(event.lngLat)
             userMarker.setLngLat(coordinates).addTo(map);
+            currentCity(newCord[0].lng, newCord[0].lat)
             $('#weather').empty();
             $.get("http://api.openweathermap.org/data/2.5/forecast", {
                 APPID: OPEN_WEATHER_APPID,
@@ -149,14 +170,13 @@
         }
 
 //function for search input
-        $('#submitSearch').click(function(event) {
-            console.log($('#searchInput').val())
+        $('#submitSearch').click(function() {
             geocode($('#searchInput').val(), MAPBOX_TOKEN).then(function(result) {
-                console.log(result);
                 $('#weather').empty();
                 map.setCenter(result)
-                map.setZoom(5);
                 userMarker.setLngLat(result).addTo(map);
+                currentCity(result[0], result[1]);
+                map.setZoom(5);
                 $.get("http://api.openweathermap.org/data/2.5/forecast", {
                     APPID: OPEN_WEATHER_APPID,
                     lon: result[0],
@@ -165,6 +185,9 @@
                 }).done(htmlInput);
             });
         })
+
+
+
 
 //click event to set marker
         map.on('click', updateMarker)
