@@ -24,6 +24,7 @@
 
         main {
             margin: 0 15px;
+            padding: 0;
         }
         #map {
             /* the width and height may be set to any size */
@@ -32,6 +33,7 @@
             padding: 0;
             border: 1px black solid;
             border-radius: 15px;
+            box-shadow: rgba(7,7,7,0.51) 4px 4px 4px;
         }
 
         #weather {
@@ -45,17 +47,17 @@
             border-radius: 15px;
             overflow: auto;
             white-space: nowrap;
-
+            min-height: 421px;
         }
 
         .weatherCards {
             border: black 2px solid;
-            /*padding: 15px 50px;*/
             background-color: rgba(255,255,255,0.51);
             border-radius: 15px;
             min-width: 250px;
             max-width: 250px;
             margin: 15px;
+            box-shadow: rgba(7,7,7,0.51) 4px 4px 4px;
         }
         .date {
             background-color: rgba(105,105,105,0.51);
@@ -82,7 +84,8 @@
         }
 
         #search {
-            width: 50%;
+            max-width: 500px;
+            min-width: 100px;
             justify-content: center;
             margin: auto;
             padding-top: 25px;
@@ -92,10 +95,82 @@
             text-align: center;
         }
 
-        @media screen and (min-width: 1440px) {
-            .weatherCards {
-                margin: auto;
+
+        @media screen and (min-width: 1024px) {
+            #forecast {
+                width: 32%;
             }
+
+            #weather {
+                display: flex;
+                flex-direction: column;
+                background-image: none;
+                background-position: center;
+                background-size: cover;
+                margin: 15px;
+                border-radius: 15px;
+                overflow-y: auto;
+                max-height: 800px;
+
+            }
+
+            #dailyForecast {
+                visibility: hidden;
+            }
+
+            #weatherContainer {
+                display: flex;
+                flex-direction: column-reverse;
+                margin-top: 15px;
+            }
+
+            #htmlMap {
+                width: 100%;
+            }
+
+            #pageData {
+                display: flex;
+            }
+
+            #map {
+                min-height: 700px;
+            }
+
+            #city {
+                display: none;
+            }
+
+            #search {
+                visibility: hidden;
+            }
+
+            #search2 {
+                max-width: 500px;
+                min-width: 100px;
+                justify-content: center;
+                margin: auto;
+                padding-top: 25px;
+                margin-bottom: 15px;
+            }
+
+            #city2 {
+                text-align: center;
+                padding-top: 15px;
+            }
+
+
+        }
+
+        @media screen and (max-width: 1023px) {
+            #city2, #search2, #dailyForecast2 {
+                visibility: hidden;
+            }
+
+            #htmlMap {
+                display: flex;
+                flex-direction: column-reverse;
+            }
+
         }
 
 
@@ -110,19 +185,32 @@
     </nav>
 
     <main>
-        <div id="search" class="d-flex">
-            <input id="searchInput" class="form-control me-2" type="search" placeholder="Ex: Dallas" aria-label="Search">
-            <button id="submitSearch" class="btn btn-outline-success" type="submit">Find</button>
-        </div>
-
         <h3 id="city">Crandall, Texas, United States</h3>
 
-        <div>
-            <div style="text-align: center">5-Day Forecast</div>
-            <div id="weather"></div>
+        <div id="pageData">
+            <section id="forecast">
+                <div id="weatherContainer">
+                    <div style="text-align: center" id="dailyForecast">5-Day Forecast</div>
+                    <div id="search" class="d-flex">
+                        <input id="searchInput" class="form-control me-2" type="search" placeholder="Ex: Dallas" aria-label="Search">
+                        <button id="submitSearch" class="btn btn-outline-success" type="submit">Find</button>
+                    </div>
+                    <div id="weather"></div>
+                </div>
+            </section>
+
+            <section id="htmlMap">
+                <h3 id="city2" style="text-align: center">Crandall, Texas, United States</h3>
+                <div style="text-align: center" id="dailyForecast2">5-Day Forecast</div>
+                <div id="search2" class="d-flex">
+                    <input id="searchInput2" class="form-control me-2" type="search" placeholder="Ex: Dallas" aria-label="Search">
+                    <button id="submitSearch2" class="btn btn-outline-success" type="submit">Find</button>
+                </div>
+                <div id="map"></div>
+            </section>
         </div>
 
-        <div id="map"></div>
+
 
         <script src="js/jquery-3.6.4.js"></script>
         <script src="js/keys.js"></script>
@@ -135,7 +223,8 @@
                 container: 'map',
                 style: 'mapbox://styles/mapbox/streets-v9',
                 zoom: 12,
-                center: [-96.4558196, 32.6279113]
+                center: [-96.4558196, 32.6279113],
+                cooperativeGestures: true
             });
 
             let currentCity = function(lng, lat) {
