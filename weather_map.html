@@ -305,6 +305,24 @@
                 });
             })
 
+            $('#submitSearch2').click(function() {
+                geocode($('#searchInput2').val(), MAPBOX_TOKEN).then(function(result) {
+                    $('#weather2').empty();
+                    map.flyTo({
+                        center: [result[0], result[1]],
+                        essential: true,
+                    });
+                    userMarker.setLngLat(result).addTo(map);
+                    currentCity(result[0], result[1]);
+                    $.get("http://api.openweathermap.org/data/2.5/forecast", {
+                        APPID: OPEN_WEATHER_APPID,
+                        lon: result[0],
+                        lat: result[1],
+                        units: "imperial"
+                    }).done(htmlInput);
+                });
+            })
+
     //click event to set marker
             map.on('click', updateMarker)
 
